@@ -1,17 +1,62 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<title>YouTube Downloader</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="description"
+	content="Downloading YouTube videos on yur desktop" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Hello World</title>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="assets/css/bootstrap.min.css" media="screen">
+<link rel="stylesheet" type="text/css"
+	href="assets/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="assets/css/style.css"
+	media="screen">
+<link rel="stylesheet" type="text/css" href="assets/css/responsive.css"
+	media="screen">
 </head>
 <body>
-	<form action="HelloWorld" method="post">
-		<br> <input type="text"   name="url"> 
-		<br> 
-		<br> <input type="submit" name="Sumbit"> 
-		<br>
-	</form>
 
+	<div id="header"></div>
+
+	<div class="fix main_content_area">
+
+		<div class="fix wrapper main_content">
+			<div class="inner_page">
+				<h1>Download Xvideos !!!</h1>
+				<h2>Please put the video url below and press the Submit button</h2>
+				<form action="HelloWorld" method="post">
+					<br> <input type="text" name="xvideosurl"> 
+					     <input type="submit" name="Submit"> 
+					<br>
+				</form>
+				
+				<h1>Download Youtube vidoes !!!</h1>
+				<h2>Please put the video url below and press the Submit button</h2>
+				<form action="HelloWorld" method="post">
+					<br> <input type="text" name="youtubeurl"> 
+					     <input type="submit" name="Submit"> 
+					<br>
+				</form>
+				
+				<h1>Download Vimeo vidoes !!!</h1>
+				<h2>Please put the video url below and press the Submit button</h2>
+				<form action="HelloWorld" method="post">
+					<br> <input type="text" name="vimeourl"> 
+					     <input type="submit" name="Submit"> 
+					<br>
+				</form>
+				
+			</div>
+		</div>
+	</div>
+
+	<div id="footer"></div>
+	<script>
+		$("#header").load("pages/header.html");
+		$("#footer").load("pages/footer.html");
+	</script>
 </body>
 
 </html>

@@ -1,9 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>JavaWebProject</groupId>
-	<artifactId>JavaWebProject</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>JavaWeb</groupId>
+	<artifactId>JavaWeb</artifactId>
 	<packaging>war</packaging>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -25,19 +24,23 @@
 				</configuration>
 			</plugin>
 		</plugins>
+
 	</build>
+	<properties>
+
+		<commons-lang.version>3.5</commons-lang.version>
+		<wget.version>1.4.3</wget.version>
+		<gson.version>2.8.0</gson.version>
+
+	</properties>
+
+
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.github.axet</groupId>
-			<artifactId>vget</artifactId>
-			<version>1.1.33</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
@@ -67,6 +70,30 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.5</version>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.axet</groupId>
+			<artifactId>wget</artifactId>
+			<version>${wget.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>${gson.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.2</version>
+		</dependency>
+
 	</dependencies>
+	<version>Project</version>
 </project>

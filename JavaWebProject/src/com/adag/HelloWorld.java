@@ -2,11 +2,17 @@ package com.adag;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.github.axet.vget.vhs.YouTubeParser.VideoDownload;
+import com.youtube.VideoInfo;
 
 public class HelloWorld extends HttpServlet {
 	/**
@@ -18,14 +24,44 @@ public class HelloWorld extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 
-		String urlString = request.getParameter("url");
-	//	String fileUrl = "C:\\Users\\admin\\Downloads\\" + request.getParameter("inputfile");
-		
-		String videoUrl = XvideosDownloader.getVideoUrl(urlString);
+		String urlString = request.getParameter("xvideosurl");
+		String videoUrl = null;
+		RequestDispatcher rd = null;
 
-		request.setAttribute("videoUrl", videoUrl);
-		RequestDispatcher rd = request.getRequestDispatcher("download.jsp");
-		rd.forward(request, response);
+		if (urlString != null && urlString.length() > 0) {
+			videoUrl = XvideosDownloader.getVideoUrl(urlString);
+			rd = request.getRequestDispatcher("download.jsp");
+			request.setAttribute("videoUrl", videoUrl);
+			rd.forward(request, response);
+		}
+
+		urlString = request.getParameter("youtubeurl");
+
+		if (urlString != null && urlString.length() > 0) {
+
+			String sourceUrl = getServletContext().getRealPath("/");
+			List<VideoDownload> videosUrl = YouTubeGrabber
+					.getVideoUrl(urlString);
+			List<VideoInfo> videoInfos = new ArrayList<VideoInfo>();
+
+			for (VideoDownload videodownload : videosUrl) {
+				VideoInfo videoinfo = new VideoInfo(videodownload.stream,
+						videodownload.url);
+				if (videodownload.stream instanceof com.github.axet.vget.vhs.YouTubeInfo.StreamCombined) {
+					videoInfos.add(videoinfo);
+				}
+			}
+
+			request.setAttribute("videosUrl", videoInfos);
+			request.setAttribute("videoName",
+					YouTubeGrabber.videoInfo.getTitle());
+			request.setAttribute("thumbnail",
+					YouTubeGrabber.videoInfo.getIcon());
+
+			rd = request.getRequestDispatcher("downloadYouTube.jsp");
+			rd.forward(request, response);
+
+		}
 
 	}
 

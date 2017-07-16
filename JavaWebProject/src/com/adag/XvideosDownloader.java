@@ -24,7 +24,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 public class XvideosDownloader {
 
 	public static String getVideoUrl(String url)
-			throws ClientProtocolException, IOException {
+			throws IOException {
 		// Connecting to the url
 		String downloadUrl = url;
 		String userAgent = "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13";
