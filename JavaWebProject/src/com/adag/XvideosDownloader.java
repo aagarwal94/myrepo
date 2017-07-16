@@ -66,11 +66,7 @@ public class XvideosDownloader {
 		String returnUrl = URLDecoder.decode(wholething);
 		System.out.println("String" + wholething);
 
-		// Saving the file in my local
-		System.out.println("Starting the file download ... ");
-		// savingFileFromOutputStream(url, outputfile);
-		System.out.println("Starting the file complete ... ");
-		return returnUrl;
+	  	return returnUrl;
 	}
 
 	// convert InputStream to String

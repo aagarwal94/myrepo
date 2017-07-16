@@ -27,7 +27,28 @@ import com.google.gson.Gson;
 public class VimeoParser extends VGetParser {
 
     public static class VideoDownload {
-        public VimeoQuality vq;
+        @Override
+		public String toString() {
+			return "VideoDownload [vq=" + vq + ", url=" + url + "]";
+		}
+
+		public VimeoQuality getVq() {
+			return vq;
+		}
+
+		public void setVq(VimeoQuality vq) {
+			this.vq = vq;
+		}
+
+		public URL getUrl() {
+			return url;
+		}
+
+		public void setUrl(URL url) {
+			this.url = url;
+		}
+
+		public VimeoQuality vq;
         public URL url;
 
         public VideoDownload(VimeoQuality vq, URL u) {

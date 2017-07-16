@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.adag.parsers.XvideosParser;
 import com.github.axet.vget.vhs.YouTubeParser.VideoDownload;
 import com.youtube.VideoInfo;
 
@@ -25,11 +26,11 @@ public class HelloWorld extends HttpServlet {
 		response.setContentType("text/html");
 
 		String urlString = request.getParameter("xvideosurl");
-		String videoUrl = null;
+		List<String> videoUrl = null;
 		RequestDispatcher rd = null;
 
 		if (urlString != null && urlString.length() > 0) {
-			videoUrl = XvideosDownloader.getVideoUrl(urlString);
+			videoUrl = XvideosParser.filterUrlFromXvideos(urlString);
 			rd = request.getRequestDispatcher("download.jsp");
 			request.setAttribute("videoUrl", videoUrl);
 			rd.forward(request, response);
@@ -51,6 +52,33 @@ public class HelloWorld extends HttpServlet {
 					videoInfos.add(videoinfo);
 				}
 			}
+
+			request.setAttribute("videosUrl", videoInfos);
+			request.setAttribute("videoName",
+					YouTubeGrabber.videoInfo.getTitle());
+			request.setAttribute("thumbnail",
+					YouTubeGrabber.videoInfo.getIcon());
+
+			rd = request.getRequestDispatcher("downloadYouTube.jsp");
+			rd.forward(request, response);
+
+		}
+
+		urlString = request.getParameter("vimeourl");
+
+		if (urlString != null && urlString.length() > 0) {
+
+			String sourceUrl = getServletContext().getRealPath("/");
+			List<com.github.axet.vget.vhs.VimeoParser.VideoDownload> videosUrl = VimeoGrabber
+					.getVideoUrl(urlString);
+			List<com.github.axet.vget.vhs.VimeoInfo> videoInfos = new ArrayList<com.github.axet.vget.vhs.VimeoInfo>();
+
+			for (com.github.axet.vget.vhs.VimeoParser.VideoDownload videodownload : videosUrl) {
+				/*
+				 * if (videodownload.stream instanceof
+				 * com.github.axet.vget.vhs.VimeoInfo.StreamCombined) {
+				 * videoInfos.add(videoinfo); }
+				 */}
 
 			request.setAttribute("videosUrl", videoInfos);
 			request.setAttribute("videoName",
